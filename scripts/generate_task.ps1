@@ -5,9 +5,29 @@
 # Description: Generate windows scheduled task to run poller
 # -----------------------------------------------------------
 
-Write-Output "Generating Windows Scheduled Task for Poller"
+param(
+	[string]$path = 'c:\tasks\discover-camping-poller\'
+)
 
-$action = New-ScheduledTaskAction -Execute 'discover-camping.exe'
+Write-Output "Generating Windows Scheduled Task for Poller`n"
+
+if(Test-Path($path)){
+	Write-Output "Target directory $path already exists.`nDelete directory and try again`n"
+	Exit 1
+}
+
+Write-Output "Copying binaries to $path"
+Push-Location ..
+
+$binFolder = "netcoreapp3.1\*"
+Copy-Item -Path $binFolder -Destination $path -Recurse
+
+Write-Output "Binaries copied"
+Pop-Location
+
+$executionPath = $path + "discover-camping.exe"
+
+$action = New-ScheduledTaskAction -Execute $executionPath
 
 $triggers = @()
 $triggers += New-ScheduledTaskTrigger -Daily -At 06:00 
