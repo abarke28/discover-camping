@@ -61,17 +61,14 @@ public class ReservationTests : IDisposable {
         var currentMonth = DateTime.Today.Month;
         var numMonthsToAdvance = month - currentMonth;
 
-        if (numMonthsToAdvance > 0)
+        Driver.FindElement(By.Id(CssSelectors.ARRIVAL_DATE)).Click();
+        
+        while (numMonthsToAdvance-- > 0)
         {
-            Driver.FindElement(By.Id(CssSelectors.ARRIVAL_DATE)).Click();
-
-            while (numMonthsToAdvance-- > 0)
-            {
-                Driver.FindElement(By.CssSelector(CssSelectors.MONTH_NEXT)).Click();
-            }
-
-            Driver.FindElement(By.LinkText(day)).Click();
+            Driver.FindElement(By.CssSelector(CssSelectors.MONTH_NEXT)).Click();
         }
+
+        Driver.FindElement(By.LinkText(day)).Click();
     }
 
     private bool IsBookingAvailable()

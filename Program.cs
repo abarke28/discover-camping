@@ -9,7 +9,7 @@ namespace discover_camping
         {
             Console.WriteLine("Checking Berg Lake for availability`n");
 
-            var poller = new ReservationTests();
+            using var poller = new ReservationTests();
             var isAvailable = poller.IsReservationAvailable(XPath.BergLake);
 
             if (isAvailable)
