@@ -6,20 +6,24 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 public class ReservationPoller : IDisposable {
+    
     public IWebDriver Driver {get; private set;}
     public IDictionary<String, Object> Vars {get; private set;}
     public IJavaScriptExecutor Js {get; private set;}
 
     public ReservationPoller()
     {
-      Driver = new ChromeDriver();
-      Js = (IJavaScriptExecutor)Driver;
-      Vars = new Dictionary<String, Object>();
+        var options = new ChromeOptions();
+        options.AddArgument(Constants.HEADLESS);
+
+        Driver = new ChromeDriver(options);
+        Js = (IJavaScriptExecutor)Driver;
+        Vars = new Dictionary<String, Object>();
     }
 
     public void Dispose()
     {
-      Driver.Quit();
+        Driver.Quit();
     }
 
     public bool IsReservationAvailable(string location, int month = Constants.AUGUST, string day = Constants.SIX) {

@@ -16,7 +16,7 @@ namespace discover_camping
 
             if (isAvailable)
             {
-                Console.WriteLine("Reservations ARE available currently");
+                Console.WriteLine("\nReservations ARE available currently");
                 
                 var notifier = new EmailNotifier();
 
@@ -24,7 +24,7 @@ namespace discover_camping
             }
             else
             {
-                Console.WriteLine("Reservations ARE NOT available currently");
+                Console.WriteLine("\nReservations ARE NOT available currently");
             }
         }
     }
