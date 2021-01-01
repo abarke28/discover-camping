@@ -4,7 +4,6 @@ using System.Threading;
 using discover_camping.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 
 public class ReservationPoller : IDisposable {
     public IWebDriver Driver {get; private set;}
@@ -26,18 +25,13 @@ public class ReservationPoller : IDisposable {
     public bool IsReservationAvailable(string location, int month = Constants.AUGUST, string day = Constants.SIX) {
 
         OpenDiscoverCamping();
-
         SetLocation(location);
-
         SetDate(month, day);
-        
-        Driver.FindElement(By.Id(CssSelectors.SEARCH)).Click();
+        Search();
 
-        Thread.Sleep(5000);
-        //Driver.FindElement(By.Id("26")).Click();
-        //Driver.FindElement(By.Id("7")).Click();
+        var isBookingAvailable = IsBookingAvailable();
 
-        return IsBookingAvailable();
+        return isBookingAvailable;
     }
 
     private void OpenDiscoverCamping()
@@ -69,6 +63,12 @@ public class ReservationPoller : IDisposable {
         }
 
         Driver.FindElement(By.LinkText(day)).Click();
+    }
+
+    private void Search()
+    {
+        Driver.FindElement(By.Id(CssSelectors.SEARCH)).Click();
+        Thread.Sleep(1500); // wait for page to load
     }
 
     private bool IsBookingAvailable()

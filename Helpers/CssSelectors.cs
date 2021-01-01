@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace discover_camping.Helpers
+﻿namespace discover_camping.Helpers
 {
     public static class CssSelectors
     {
