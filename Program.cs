@@ -1,4 +1,5 @@
 ﻿using discover_camping.Helpers;
+using discover_camping.notifiers;
 using System;
 
 namespace discover_camping
@@ -10,12 +11,16 @@ namespace discover_camping
             Console.WriteLine("------------------------------------");
             Console.WriteLine("CHECKING BERG LAKE FOR AVAILABILITY\n");
 
-            using var poller = new ReservationTests();
+            using var poller = new ReservationPoller();
             var isAvailable = poller.IsReservationAvailable(XPath.BergLake);
 
             if (isAvailable)
             {
                 Console.WriteLine("Reservations ARE available");
+                
+                using var notifier = new EmailNotifier();
+
+                notifier.Notify();
             }
             else
             {
