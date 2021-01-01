@@ -73,6 +73,8 @@ public class ReservationTests : IDisposable {
 
     private bool IsBookingAvailable()
     {
-        return true;
+        var element = Driver.FindElement(By.Id(CssSelectors.DATE_BOX));
+
+        return (!element.Text.Contains(Constants.NOT_AVAILABLE));
     }
 }
