@@ -1,4 +1,5 @@
-﻿using System;
+﻿using discover_camping.Helpers;
+using System;
 
 namespace discover_camping
 {
@@ -6,11 +7,15 @@ namespace discover_camping
     {
         static void Main()
         {
-            Console.WriteLine("Checking Berg Lake for availability");
+            Console.WriteLine("Checking Berg Lake for availability`n");
 
-            var tests = new SuiteTests();
+            var poller = new ReservationTests();
+            var isAvailable = poller.IsReservationAvailable(XPath.BergLake);
 
-            tests.Berg();
+            if (isAvailable)
+            {
+
+            }
         }
     }
 }
