@@ -34,3 +34,7 @@ $triggers += New-ScheduledTaskTrigger -Daily -At 06:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 06:01 
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:01 
+
+Write-Output "Registering windows scheduled task`n"
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "BergLake" -Description "Check availability of Berg Lake resos"
+Write-Output "Task Scheduled. Exiting."
