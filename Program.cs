@@ -16,9 +16,9 @@ namespace discover_camping
 
             if (isAvailable)
             {
-                Console.WriteLine("Reservations ARE available");
+                Console.WriteLine("Reservations ARE available currently");
                 
-                using var notifier = new EmailNotifier();
+                var notifier = new EmailNotifier();
 
                 notifier.Notify();
             }
