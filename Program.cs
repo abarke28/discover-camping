@@ -6,7 +6,11 @@ namespace discover_camping
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Checking Berg Lake for availability");
+
+            var tests = new SuiteTests();
+
+            tests.Berg();
         }
     }
 }
