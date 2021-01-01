@@ -4,7 +4,7 @@ namespace discover_camping
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Checking Berg Lake for availability");
 
