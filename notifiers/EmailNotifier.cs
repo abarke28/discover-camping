@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Mail;
 using System.Net;
+using System;
 
 namespace discover_camping.notifiers
 {
@@ -17,11 +18,14 @@ namespace discover_camping.notifiers
         public EmailNotifier()
         {
             GetConfig();
-
         }
 
         public void Notify()
         {
+            if (_emails == null || _emails.Count == 0) throw new ArgumentNullException(nameof(_emails));
+
+            Console.WriteLine("Notifying watchers");
+
             var message = new MailMessage
             {
                 From = new MailAddress(_senderEmail),
@@ -44,7 +48,9 @@ namespace discover_camping.notifiers
                 DeliveryMethod = SmtpDeliveryMethod.Network
             };
 
+            Console.WriteLine("Sending Email");
             client.Send(message);
+            Console.WriteLine("Email Sent");
         }
 
         private void GetConfig()
