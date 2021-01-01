@@ -1,10 +1,8 @@
 ﻿using discover_camping.Helpers;
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Mail;
-using System.Text;
 using System.Net;
 
 namespace discover_camping.notifiers
@@ -24,17 +22,17 @@ namespace discover_camping.notifiers
 
         public void Notify()
         {
-            var message = new MailMessage();
+            var message = new MailMessage
+            {
+                From = new MailAddress(_senderEmail),
+                Subject = Constants.SUBJECT,
+                Body = string.Format(Constants.BODY, Constants.DISCOVER_BACKCOUNTRY_RESERVATIONS)
+            };
 
-            message.From = new MailAddress(_senderEmail);
-
-            foreach(var email in _emails)
+            foreach (var email in _emails)
             {
                 message.To.Add(email);
             }
-
-            message.Subject = Constants.SUBJECT;
-            message.Body = string.Format(Constants.BODY, Constants.DISCOVER_BACKCOUNTRY_RESERVATIONS);
 
             var client = new SmtpClient
             {
