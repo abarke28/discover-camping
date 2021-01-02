@@ -1,6 +1,7 @@
 ﻿using Serilog;
 using Serilog.Core;
 
+
 namespace discover_camping.loggers
 {
     public class FileLogger
