@@ -32,3 +32,5 @@ Task will check if reservations are available every day at
 - 07:01
 
 Notification emails will be sent if reservations are available
+
+Log written to `c:\Users\Public\Logs\poller.log`
