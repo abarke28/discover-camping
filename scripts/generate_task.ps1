@@ -16,7 +16,6 @@ if(Test-Path($path)){
 	Exit 1
 }
 
-
 try{
 	New-Item -Path $path -ItemType "Directory"
 	Write-Output "Copying binaries to $path"
@@ -30,7 +29,6 @@ catch{
 	Write-Output "Copying failed, exiting script"
 	Exit 1
 }
-
 
 $executionPath = $path + "discover-camping.exe"
 
