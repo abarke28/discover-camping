@@ -16,14 +16,21 @@ if(Test-Path($path)){
 	Exit 1
 }
 
-Write-Output "Copying binaries to $path"
-Push-Location ..
 
-$binFolder = "netcoreapp3.1\*"
-Copy-Item -Path $binFolder -Destination $path -Recurse
+try{
+	New-Item -Path $path -ItemType "Directory"
+	Write-Output "Copying binaries to $path"
+	Push-Location ..
+	$binFolder = "netcoreapp3.1\*"
+	Copy-Item -Path $binFolder -Destination $path -Recurse
+	Write-Output "Binaries copied"
+	Pop-Location
+}
+catch{
+	Write-Output "Copying failed, exiting script"
+	Exit 1
+}
 
-Write-Output "Binaries copied"
-Pop-Location
 
 $executionPath = $path + "discover-camping.exe"
 
@@ -36,5 +43,5 @@ $triggers += New-ScheduledTaskTrigger -Daily -At 07:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:01 
 
 Write-Output "Registering windows scheduled task`n"
-Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "BergLake" -Description "Check availability of Berg Lake resos"
+Register-ScheduledTask -Action $action -Trigger $triggers -TaskName "BergLake" -Description "Check availability of Berg Lake resos"
 Write-Output "Task Scheduled. Exiting."
