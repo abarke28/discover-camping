@@ -25,6 +25,6 @@ namespace discover_camping.helpers
         public const string GMAIL = "smtp.gmail.com";
         public const int PORT = 587;
 
-        public const string LOG_FILE = "poller.log";
+        public const string LOG_FILE = @"c:\Users\Public\Logs\poller.log";
     }
 }

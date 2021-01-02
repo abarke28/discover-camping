@@ -23,7 +23,7 @@ namespace discover_camping
                 if (isAvailable)
                 {
                     Console.WriteLine("\nReservations ARE available currently");
-                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations not available");
+                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations are available");
 
                     var notifier = new EmailNotifier();
 
@@ -32,7 +32,7 @@ namespace discover_camping
                 else
                 {
                     Console.WriteLine("\nReservations ARE NOT available currently");
-                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations are available");
+                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations are not available");
                 }
             }
             catch(Exception e)
