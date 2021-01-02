@@ -42,6 +42,8 @@ $triggers += New-ScheduledTaskTrigger -Daily -At 06:01
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:01 
 
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -WakeToRun
+
 Write-Output "Registering windows scheduled task`n"
-Register-ScheduledTask -Action $action -Trigger $triggers -TaskName "BergLake" -Description "Check availability of Berg Lake resos"
+Register-ScheduledTask -Action $action -Trigger $triggers -TaskName "BergLake" -Description "Check availability of Berg Lake resos" -Settings $settings
 Write-Output "Task Scheduled. Exiting."
