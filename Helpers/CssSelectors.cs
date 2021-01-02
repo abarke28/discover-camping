@@ -1,4 +1,4 @@
-﻿namespace discover_camping.Helpers
+﻿namespace discover_camping.helpers
 {
     public static class CssSelectors
     {

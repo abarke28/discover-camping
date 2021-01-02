@@ -1,5 +1,5 @@
 ﻿using System.Configuration;
-using discover_camping.Helpers;
+using discover_camping.helpers;
 using System.Linq;
 using System.Collections.Generic;
 using System.Net.Mail;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using discover_camping.Helpers;
+using discover_camping.helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 

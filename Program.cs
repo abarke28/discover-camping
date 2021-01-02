@@ -1,4 +1,5 @@
-﻿using discover_camping.Helpers;
+﻿using discover_camping.helpers;
+using discover_camping.loggers;
 using discover_camping.notifiers;
 using System;
 
@@ -11,20 +12,33 @@ namespace discover_camping
             Console.WriteLine("------------------------------------");
             Console.WriteLine("CHECKING BERG LAKE FOR AVAILABILITY\n");
 
+            var logger = new FileLogger();
+
             using var poller = new ReservationPoller();
-            var isAvailable = poller.IsReservationAvailable(XPath.BergLake);
 
-            if (isAvailable)
+            try
             {
-                Console.WriteLine("\nReservations ARE available currently");
-                
-                var notifier = new EmailNotifier();
+                var isAvailable = poller.IsReservationAvailable(XPath.BergLake);
 
-                notifier.Notify();
+                if (isAvailable)
+                {
+                    Console.WriteLine("\nReservations ARE available currently");
+                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations not available");
+
+                    var notifier = new EmailNotifier();
+
+                    notifier.Notify();
+                }
+                else
+                {
+                    Console.WriteLine("\nReservations ARE NOT available currently");
+                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations are available");
+                }
             }
-            else
+            catch(Exception e)
             {
-                Console.WriteLine("\nReservations ARE NOT available currently");
+                logger.Logger.Error($"Polled at {DateTime.Now} - Error encountered:\n{e}");
+                throw;
             }
         }
     }

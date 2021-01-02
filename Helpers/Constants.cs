@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace discover_camping.Helpers
+namespace discover_camping.helpers
 {
     public static class Constants
     {
@@ -23,6 +23,8 @@ namespace discover_camping.Helpers
         public const string BODY = "Discover Camping Reservations are now available online at:\n {0}";
 
         public const string GMAIL = "smtp.gmail.com";
-        public const int PORT = 587; 
+        public const int PORT = 587;
+
+        public const string LOG_FILE = "poller.log";
     }
 }
