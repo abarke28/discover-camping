@@ -23,21 +23,22 @@ namespace discover_camping
                 if (isAvailable)
                 {
                     Console.WriteLine("\nReservations ARE available currently");
-                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations are available");
+                    logger.Logger.Information("Reservations are available");
 
                     var notifier = new EmailNotifier();
+                    logger.Logger.Information("Notification email sent");
 
                     notifier.Notify();
                 }
                 else
                 {
                     Console.WriteLine("\nReservations ARE NOT available currently");
-                    logger.Logger.Information($"Polled at {DateTime.Now} - reservations are not available");
+                    logger.Logger.Information("Reservations are not available");
                 }
             }
             catch(Exception e)
             {
-                logger.Logger.Error($"Polled at {DateTime.Now} - Error encountered:\n{e}");
+                logger.Logger.Error($"Error encountered:\n{e}");
                 throw;
             }
         }
