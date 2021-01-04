@@ -40,7 +40,7 @@ $triggers += New-ScheduledTaskTrigger -Daily -At 06:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 06:01 
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:01 
-$triggers += New-ScheduledTaskTrigger -Once -At 06:15 -RepititionInterval (New-TimeSpan -Minutes 30) -RepititionDuration ([timespan]::MaxValue)
+$triggers += New-ScheduledTaskTrigger -Once -At 06:15 -RepititionInterval (New-TimeSpan -Minutes 30)
 
 $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -WakeToRun
 
