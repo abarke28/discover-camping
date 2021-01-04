@@ -34,11 +34,13 @@ $executionPath = $path + "discover-camping.exe"
 
 $action = New-ScheduledTaskAction -Execute $executionPath
 
+# Run task on and just after 6am & 7am daily, and every 30 minutes generally
 $triggers = @()
 $triggers += New-ScheduledTaskTrigger -Daily -At 06:00 
 $triggers += New-ScheduledTaskTrigger -Daily -At 06:01 
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:00
 $triggers += New-ScheduledTaskTrigger -Daily -At 07:01 
+$triggers += New-ScheduledTaskTrigger -Once -At 06:15 -RepititionInterval (New-TimeSpan -Minutes 30) -RepititionDuration ([timespan]::MaxValue)
 
 $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -WakeToRun
 
